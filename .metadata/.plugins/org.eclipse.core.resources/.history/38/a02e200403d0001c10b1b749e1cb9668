@@ -1,0 +1,71 @@
+import javax.swing.JOptionPane;
+
+public abstract class Main {
+	
+	public static int acao = 0;
+
+	public static void main(String[] args) {
+		
+		String nome = JOptionPane.showInputDialog("Olá, cliente! Digite o seu nome:");
+		
+		Cliente cliente = new Cliente();
+		cliente.setNome(nome);
+		
+		Conta conta1 = new ContaCorrente(cliente);
+		Conta conta2 = new ContaPoupanca(cliente);
+		Object[] optionsConta = {conta1, conta2};
+		JOptionPane.showOptionDialog(null, "Selecione conta1 para Conta Corrente e conta2 para Conta Poupança",
+				null, JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, optionsConta, optionsConta[0]);
+		
+		cliente.boasVindas();
+		
+		Object efetuarSaque = saque(conta1, conta2);
+		Object efetuarDeposito = depositar(conta1, conta2);
+		Object efetuarTransferencia = transferir(conta1, conta2);
+		
+		Object[] decisao = {efetuarSaque,
+				efetuarDeposito,
+				efetuarTransferencia};
+		JOptionPane.showOptionDialog(null, "O que deseja fazer?",
+				null, JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, decisao, decisao);
+		
+		
+		switch (acao) {
+		case (int) efetuarDeposito:
+			Double depositar = Double.parseDouble(JOptionPane.showInputDialog("Qual valor do depósito?"));
+			conta1.depositar((double) efetuarDeposito);
+			conta1.depositar((double) efetuarDeposito);
+			break;
+			
+		case (int) efetuarSaque:
+			Double sacar = Double.parseDouble(JOptionPane.showInputDialog("Qual valor do saque?"));
+			conta1.sacar((double) efetuarSaque);
+			conta2.sacar((double) efetuarSaque);
+			break;
+			
+		case (int) efetuarTransferencia:
+			Double transferir = Double.parseDouble(JOptionPane.showInputDialog("Qual valor da transferencia?")); 
+			if (conta1 != null) {conta1.transferir(transferir, conta2); }
+			else { conta2.transferir(transferir, conta1); }
+			break;
+		}
+		
+		conta1.imprimirExtrato();
+		conta2.imprimirExtrato();
+	}
+
+	private static Object transferir(Conta conta1, Conta conta2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static Object depositar(Conta conta1, Conta conta2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected static Object saque(Conta conta1, Conta conta2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

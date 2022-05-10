@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\vitor\Desktop\Banco Digital com Java\.metadata\.plugins\org.eclipse.jdt.core
+2397226259.index
+966008577.index

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Olá, cliente! Digite seu nome:");
+		String cliente = sc.nextLine();
+
+		
+		Conta cc = new ContaCorrente(vitoria);
+		Conta poupanca = new ContaPoupanca(vitoria);
+		
+		cc.depositar(150);
+		cc.transferir(18, poupanca);
+		cc.imprimirExtrato();
+		poupanca.imprimirExtrato();
+		
+		sc.close();
+	}
+}

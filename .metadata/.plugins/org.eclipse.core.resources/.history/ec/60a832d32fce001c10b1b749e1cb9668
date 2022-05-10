@@ -1,0 +1,46 @@
+import javax.swing.JOptionPane;
+
+public class Main {
+	
+	private static int efetuarTransferencia = (Integer) null;
+	private static int efetuarDeposito =  (Integer) null;
+	private static int efetuarSaque =  (Integer) null;
+	private static int decisao;
+
+	public static void main(String[] args) {
+		
+		String nome = JOptionPane.showInputDialog("Olá, cliente! Digite o seu nome:");
+		
+		Cliente cliente = new Cliente();
+		cliente.setNome(nome);
+		
+		Object[] options = {"conta1", "conta2"};
+		String Conta = JOptionPane.showOptionDialog(null, Conta, decisao, null, options, Conta);
+		Conta conta1 = new ContaCorrente(cliente);
+		Conta conta2 = new ContaPoupanca(cliente);
+		cliente.boasVindas();
+	
+		switch (decisao) {
+		case efetuarDeposito:
+			Double depositar = Double.parseDouble(JOptionPane.showInputDialog("Qual valor do depósito?"));
+			conta1.depositar(efetuarDeposito);
+			conta1.depositar(efetuarDeposito);
+			break;
+			
+		case efetuarSaque:
+			Double sacar = Double.parseDouble(JOptionPane.showInputDialog("Qual valor do saque?"));
+			conta1.sacar(efetuarSaque);
+			conta2.sacar(efetuarSaque);
+			break;
+			
+		case efetuarTransferencia:
+			Double transferir = Double.parseDouble(JOptionPane.showInputDialog("Qual valor da transferencia?")); 
+			if (conta1 != null) {conta1.transferir(transferir, conta2); }
+			else { conta2.transferir(transferir, conta1);
+			}
+			break;
+		}
+		conta1.imprimirExtrato();
+		conta2.imprimirExtrato();
+	}
+}
